@@ -1,0 +1,29 @@
+{{> header}}
+
+<div class="container">
+    <div class="alert alert-dark d-flex justify-content-between">
+        <p id="response"></p>
+        <p id="score">Score: </p>
+        <p id="timer">Time: </p>
+    </div>
+    <div>
+        <h2 id="currentMemberName">Who's {{currentMemberName}}</h2>
+    </div>
+<div class="row">
+{{#each randomMembers}}
+<div class="col-sm-5 col-md-4 col-lg-4">
+    <div class="card member" style="width: 18rem;">
+        <img class="card-img-top headshot" src={{#if this.headshot.url}}{{this.headshot.url}}{{else}}'#'{{/if}} alt="{{this.headshot.alt}}" width="340" height="340">
+        <p class="guess" hidden>{{this.firstName}} {{this.lastName}}</p>
+    </div>
+</div>
+{{/each}}
+</div>
+</div>
+
+<button id="start">Start!</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+<script src="../js/script.js"></script>
+
+{{> footer}}

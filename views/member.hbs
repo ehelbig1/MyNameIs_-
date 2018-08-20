@@ -1,0 +1,25 @@
+{{> header}}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4"><img src="{{teamMember.headshot.url}}" class="img-responsive" alt="{{teamMember.headshot.alt}}" width="340" height="340"></div>
+            <div class="col-md-8">
+                <h1>{{teamMember.firstName}} {{teamMember.lastName}}</h1>
+                <h2>{{#if teamMember.jobTitle}}{{teamMember.jobTitle}}{{else}}Unknown{{/if}}</h2>
+                {{#each teamMember.socialLinks}}
+                    <a href="{{this.url}}"><i class={{#if_eq this.type "linkedin"}}
+                                "fab fa-linkedin fa-5x"
+                             {{else}}{{#if_eq this.type "google"}}
+                                "fab fa-google fa-5x"
+                            {{else}}{{#if_eq this.type "twitter"}}
+                                "fab fa-twitter fa-5x"
+                             {{/if_eq}}{{/if_eq}}{{/if_eq}}></i></a>
+                {{/each}}
+                <p>{{#if teamMember.bio}}{{teamMember.bio}}{{else}}Bio coming soon!{{/if}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer}}
