@@ -10,6 +10,7 @@ module.exports = function(http){
     const io = require('socket.io')(http);
 
     io.on('connection', socket => {
+        console.log(connections);
         let referer = socket.handshake.headers.referer.split('/');
         let requestedGame = referer[referer.length - 1];
         
@@ -79,14 +80,9 @@ module.exports = function(http){
         });
 
         socket.on('disconnect', () => {
-            connections.find(connection => {
-                if (connection.connectionId === socket.conn.id){
-                    let index = connections.indexOf(connection);
-                    connections.splice(index);
+            console.log(connections.length);
 
-                    console.log('Socket has been closed!');
-                }
-            })
+            connections = connections.filter(connection => connection.connectionId !== socket.conn.id);
         });
     });
 };
